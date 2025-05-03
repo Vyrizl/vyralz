@@ -16,69 +16,52 @@
             color: white;
         }
 
-        #mute-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-        }
-
         .center-image {
             max-width: 300px;
             margin: 20px 0;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            75% { transform: translateX(10px) rotate(5deg); }
         }
 
         .glowing-text {
             font-size: 2.5em;
             font-weight: bold;
             text-align: center;
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: glow 2s ease-in-out infinite alternate,
+                       fade 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fade {
+            from { opacity: 1; }
+            to { opacity: 0.5; }
         }
 
         @keyframes glow {
             from {
                 text-shadow: 0 0 10px #fff,
                            0 0 20px #fff,
-                           0 0 30px #e60073,
-                           0 0 40px #e60073;
+                           0 0 30px #0073e6,
+                           0 0 40px #0073e6;
             }
             to {
                 text-shadow: 0 0 20px #fff,
-                           0 0 30px #ff4da6,
-                           0 0 40px #ff4da6,
-                           0 0 50px #ff4da6;
+                           0 0 30px #4da6ff,
+                           0 0 40px #4da6ff,
+                           0 0 50px #4da6ff;
             }
         }
     </style>
 </head>
 <body>
-    <button id="mute-btn">🔊 Mute</button>
-    
-    <audio id="background-music" autoplay loop>
-        <source src="https://vyralz.vercel.app/youtube_kwkTa2zbv9Q_audio.mp3" type="audio/mp3">
-    </audio>
-
-    <img src="https://vyralz.vercel.app/channels4_profile.jpg" alt="Vyralz" class="center-image">
+    <img src="channels4_profile.jpg" alt="Vyralz" class="center-image">
     
     <div class="glowing-text">
         VYRALZ
     </div>
-
-    <script>
-        const audio = document.getElementById('background-music');
-        const muteBtn = document.getElementById('mute-btn');
-        let isMuted = false;
-
-        muteBtn.addEventListener('click', () => {
-            isMuted = !isMuted;
-            audio.muted = isMuted;
-            muteBtn.textContent = isMuted ? '🔇 Unmute' : '🔊 Mute';
-        });
-    </script>
 </body>
 </html>
